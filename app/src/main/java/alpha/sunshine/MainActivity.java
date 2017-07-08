@@ -12,11 +12,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.io.StringWriter;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 public class MainActivity extends AppCompatActivity {
-    private static String XMLString;                                                                //is null before calling networkThread.execute()
     private static BufferedReader in;
-    URLBuilder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        XMLString = inputLine;
+        String XMLString = inputLine;
         //XMLString.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
 
         Log.i("XML:", XMLString);
@@ -77,25 +84,26 @@ public class MainActivity extends AppCompatActivity {
         TextView xml = (TextView) findViewById(R.id.textView);
         xml.setText(XMLString);
 
-        new Parser(XMLString, this).parse();                                                              //continue XML processing in mSAXHandler
+        new Parser(prettyFormat(XMLString, 4), this).parse();                                                              //continue XML processing in mSAXHandler
     }
 
-    /*public static String prettyFormat(String input, int indent) {
+    public static String prettyFormat(String input, int indent) {
         try {
             Source xmlInput = new StreamSource(new StringReader(input));
             StringWriter stringWriter = new StringWriter();
             StreamResult xmlOutput = new StreamResult(stringWriter);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            transformerFactory.setAttribute("indent-number", indent);
+            //transformerFactory.setAttribute("indent-number", indent);
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.transform(xmlInput, xmlOutput);
             return xmlOutput.getWriter().toString();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e); // simple exception handling, please review it
         }
     }
-    */
+
     public void onFailedParse() {
         //called when a SAXException occurs. Usually the server cannot find the city and sends back an invalid XML document
         //TODO: when this occurs build a new URL using the last known good location stored in a sharedPref

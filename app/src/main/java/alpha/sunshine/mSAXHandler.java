@@ -6,14 +6,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * Created by marian on 07.07.2017.
- */
-
-public class mSAXHandler extends DefaultHandler{
+class mSAXHandler extends DefaultHandler{
     // do not call superclass methods, it will stop at the first tag
 
-    public boolean isInTemperature = false;                                                      //true when it is inside the temperature tag
+    private boolean isInTemperature = false;                                                      //true when it is inside the temperature tag
 
     /**
      * Receive notification of the beginning of the document.
@@ -58,7 +54,6 @@ public class mSAXHandler extends DefaultHandler{
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         Log.d("endElement: ", "|" +localName + "|");
-
         if(localName.equals("temperature")) {
             isInTemperature = false;
         }
