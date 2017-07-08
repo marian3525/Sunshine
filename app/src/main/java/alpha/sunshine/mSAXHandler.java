@@ -58,7 +58,6 @@ public class mSAXHandler extends DefaultHandler{
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         Log.d("endElement: ", "|" +localName + "|");
-
         if(localName.equals("temperature")) {
             isInTemperature = false;
         }
