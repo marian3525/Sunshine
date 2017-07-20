@@ -12,17 +12,13 @@ import android.util.Log;
 
 import java.util.List;
 
-/**
- * Created by marian on 07.07.2017.
- */
-
 public class LocationFinder implements LocationListener {
     public static long time, time_last;
     protected static LocationManager locationManager;
     protected static MainActivity activity;
     protected static URLBuilder urlBuilder;
     protected static Location location;
-    protected static long updateInterval = 15; //seconds
+    protected static long updateInterval = 30; //seconds
 
     public LocationFinder(MainActivity activity, URLBuilder urlBuilder) {
         this.activity = activity;
@@ -145,6 +141,6 @@ public class LocationFinder implements LocationListener {
     @Override
     public void onProviderDisabled(String s) {
         LocationProvider provider = locationManager.getProvider(s);
-        Log.d("@@@@@@@@@@@@@@@@@@", "onProviderEnabled: Location Provider " + provider + " has been disabled");
+        Log.d("@@@@@@@@@@@@@@@@@@", "onProviderDisabled: Location Provider " + provider + " has been disabled");
     }
 }

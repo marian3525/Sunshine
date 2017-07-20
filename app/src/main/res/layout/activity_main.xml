@@ -7,22 +7,22 @@
     tools:context="alpha.sunshine.MainActivity">
 
     <TextView
-        android:layout_width="402dp"
-        android:layout_height="517dp"
+        android:layout_width="342dp"
+        android:layout_height="414dp"
         android:text="Waiting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintVertical_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintVertical_bias="0.0"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        tools:layout_editor_absoluteY="-128dp"
-        tools:layout_editor_absoluteX="-75dp" />
+        tools:layout_editor_absoluteY="111dp"
+        tools:layout_editor_absoluteX="66dp" />
 
     <TextView
         android:id="@+id/textView1"
